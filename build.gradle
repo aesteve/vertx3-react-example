@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'com.moowork.node' version '0.8'
+}
+
+repositories {
+	mavenLocal()
+    mavenCentral()
+    maven { url 'http://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+dependencies {
+}
+
+node {
+    download= true
+}
+
+task execClient(type: NodeTask) {
+    dependsOn npmInstall
+    script = file('rawAssets/requireClient.js')
+    args = []
+}
