@@ -11,14 +11,22 @@ repositories {
 }
 
 dependencies {
+	compile 'io.vertx:vertx-lang-js:3.0.0-SNAPSHOT'
+	
+	testCompile 'io.vertx:vertx-lang-js:3.0.0-SNAPSHOT'
+	testCompile 'junit:junit:4.12'
 }
 
 node {
     download= true
 }
 
-task execClient(type: NodeTask) {
-    dependsOn npmInstall
-    script = file('rawAssets/requireClient.js')
-    args = []
+task copyModules(type: Copy) {
+	dependsOn 'npmInstall'
+	from 'node_modules'
+	into 'src/main/resources/node_modules'
+}
+
+test {
+	dependsOn 'copyModules'
 }
