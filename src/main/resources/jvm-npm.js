@@ -84,7 +84,7 @@ module = (typeof module == 'undefined') ? {} :  module;
   };
 
   function Require(id, parent) {
-	  console.log("require constructor")
+	  
     var core, native, file = Require.resolve(id, parent);
 
     if (!file) {
