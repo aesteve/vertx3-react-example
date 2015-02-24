@@ -35,7 +35,6 @@ public class SimpleTemplateTest {
 
     @Test
     public void testRenderReactComponent() throws ScriptException {
-        nashorn.eval("var React = require('react')");
         String name = "Foo";
         String componentName = "MyComponent";
         createPureReactComponent(componentName);
@@ -46,7 +45,6 @@ public class SimpleTemplateTest {
 
     @Test
     public void testRenderReactComponentToStaticMarkup() throws ScriptException {
-        nashorn.eval("var React = require('react')");
         String name = "Foo";
         String componentName = "MyComponent";
         createPureReactComponent(componentName);
@@ -65,7 +63,7 @@ public class SimpleTemplateTest {
     // }
     //
     private static Reader getBundledReact() {
-        return getScript("node_modules/react/dist/react-with-addons.js");
+        return getScript("node_modules/react/dist/react-with-addons.min.js");
     }
 
     private static Reader getScript(String path) {
