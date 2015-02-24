@@ -62,18 +62,18 @@ module = (typeof module == 'undefined') ? {} :  module;
       args   = ['exports', 'module', 'require', '__filename', '__dirname'],
       func   = new Function(args, body);
     var runModule = function() {
-      var rm = module.exports.__vertxRunModule;
+      // var rm = module.exports.__vertxRunModule;
       func.apply(module,
         [module.exports, module, module.require, module.filename, dir]);
-      if (rm) {
-        module.exports.__vertxRunModule = rm;
-      }
+//      if (rm) {
+//        module.exports.__vertxRunModule = rm;
+//      }
     }
     runModule();
     module.loaded = true;
     module.main = main;
     var exp = module.exports;
-    exp.__vertxRunModule = runModule;
+//    exp.__vertxRunModule = runModule;
     return exp;
   };
 
@@ -112,6 +112,8 @@ module = (typeof module == 'undefined') ? {} :  module;
         return loadJSON(file);
       }
     } catch(ex) {
+    	console.log("error is ModuleError");
+    	console.log(ex.message);
       throw new ModuleError("Cannot load module " + id, "LOAD_ERROR", ex);
     }
   }
@@ -121,7 +123,7 @@ module = (typeof module == 'undefined') ? {} :  module;
     for ( var i = 0 ; i < roots.length ; ++i ) {
       var root = roots[i];
       var result = resolveCoreModule(id, root) ||
-//	      resolveAsRelativePath(id, parent) ||
+	      resolveAsRelativePath(id, parent) ||
         resolveAsFile(id, root, '.js')   ||
         resolveAsFile(id, root, '.json') ||
         resolveAsDirectory(id, root)     ||

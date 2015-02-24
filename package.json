@@ -3,7 +3,6 @@
 		"react":"*",
 		"react-router":"*",
 		"react-document-title":"*",
-		"jsx-loader":"*",
 		"node-jsx":"*"
 	}	
 }
